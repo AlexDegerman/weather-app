@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import WeatherCard from './components/WeatherCard'
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null)
@@ -25,7 +26,7 @@ const App = () => {
       <h1>Weather App</h1>
       <p>search bar</p>
       {weatherData && (
-        <p>weather cards</p>
+        <WeatherCard weather={weatherData} forecast={forecast}/>
       )}
     </div>
   )
