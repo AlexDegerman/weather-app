@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import WeatherCard from './components/WeatherCard'
+import SearchBar from './components/SearchBar'
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null)
@@ -24,7 +25,7 @@ const App = () => {
   return (
     <div>
       <h1>Weather App</h1>
-      <p>search bar</p>
+      <SearchBar onSearch={fetchWeather} />
       {weatherData && (
         <WeatherCard weather={weatherData} forecast={forecast}/>
       )}
