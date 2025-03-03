@@ -1,1 +1,1 @@
-Simple Weather App to check current and next 3 days weather powered by WeatherAPI made with React
+A simple weather app built with React to check the current and next 3 days' weather for any city, powered by WeatherAPI.
