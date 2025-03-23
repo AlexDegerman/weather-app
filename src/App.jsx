@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar'
 const App = () => {
   const [weatherData, setWeatherData] = useState(null)
   const [forecast, setForecast] = useState()
+  const [showNotification, setShowNotification] = useState(false);
 
   const fetchWeather = async (city) => {
     try {
@@ -16,9 +17,12 @@ const App = () => {
       const response = await axios.get(url)
       setWeatherData(response.data.current)
       setForecast(response.data.forecast.forecastday)
-    } catch (error) {
-        console.error("Error fetching weather data", error)
-        setWeatherData(null)
+    } catch {
+      setWeatherData(null)
+      setShowNotification(true)
+      setTimeout(() => {
+        setShowNotification(false)
+      }, 4000)
     }
   }
 
@@ -26,6 +30,12 @@ const App = () => {
     <div className="app-container">
       <h1>Weather App</h1>
       <SearchBar onSearch={fetchWeather} />
+      {showNotification && (
+        <div className="notification">
+          <p>Could not fetch weather data.</p>
+          <p>Please check the city name.</p>
+        </div>
+      )}
       {weatherData && (
         <WeatherCard weather={weatherData} forecast={forecast}/>
       )}
